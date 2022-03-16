@@ -3,7 +3,10 @@ version: '3.7'
 services:
 
   web:
-    image: web:latest
+    image: web
+    build: 
+      context: .
+      dockerfile: Dockerfile
     volumes:
       - '.:/app'
       - '/app/node_modules'
@@ -15,10 +18,10 @@ services:
       - HOST_POSTGRES=postgres
     depends_on:
       - postgres
-    # deploy:
-    #   placement: 
-    #     constraints: 
-    #       - node.role != manager
+    deploy:
+      placement: 
+        constraints: 
+          - node.role != manager
     #   replicas: 3
     #   update_config:
     #     parallelism: 2
