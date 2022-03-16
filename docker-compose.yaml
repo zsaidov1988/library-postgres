@@ -15,23 +15,23 @@ services:
       - HOST_POSTGRES=postgres
     depends_on:
       - postgres
-    deploy:
-      # placement: 
-      #   constraints: 
-      #     - node.role != manager
-      replicas: 3
-      update_config:
-        parallelism: 2
-        delay: 10s
-      restart_policy:
-        condition: on-failure
-      resources:
-        limits:
-          cpus: "2"
-          memory: 4G
-        reservations: 
-          cpus: "1"
-          memory: 3G
+    # deploy:
+    #   # placement: 
+    #   #   constraints: 
+    #   #     - node.role != manager
+    #   replicas: 3
+    #   update_config:
+    #     parallelism: 2
+    #     delay: 10s
+    #   restart_policy:
+    #     condition: on-failure
+    #   resources:
+    #     limits:
+    #       cpus: "2"
+    #       memory: 4G
+    #     reservations: 
+    #       cpus: "1"
+    #       memory: 3G
   
   postgres:
     image: postgres:9.6
@@ -45,10 +45,10 @@ services:
       - 5433:5432
     networks:
       - db
-    deploy:
-      placement: 
-        constraints: 
-          - node.role != manager
+    # deploy:
+    #   placement: 
+    #     constraints: 
+    #       - node.role != manager
   
   # portainer:
   #   image: portainer/portainer:latest
