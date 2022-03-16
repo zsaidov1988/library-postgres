@@ -16,9 +16,10 @@ services:
     depends_on:
       - postgres
     deploy:
+      replicas: 2
       placement: 
         constraints: 
-          - node.role != manager
+          - node.role == manager
     #   replicas: 3
     #   update_config:
     #     parallelism: 2
@@ -46,6 +47,7 @@ services:
     networks:
       - db
     deploy:
+      replicas: 2
       placement: 
         constraints: 
           - node.role != manager
@@ -70,6 +72,7 @@ services:
     image: "traefik/whoami"
     container_name: "simple-service"
     deploy:
+      replicas: 2
       placement: 
         constraints: 
           - node.role != manager
@@ -77,6 +80,7 @@ services:
     image: nginx:latest
     container_name: "nginx-service"
     deploy:
+      replicas: 2
       placement: 
         constraints: 
           - node.role != manager
@@ -84,6 +88,7 @@ services:
     image: mongo:latest
     container_name: "mongo-service"
     deploy:
+      replicas: 2
       placement: 
         constraints: 
           - node.role != manager
