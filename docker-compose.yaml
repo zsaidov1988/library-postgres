@@ -68,6 +68,9 @@ services:
   nginx:
     image: nginx:latest
     container_name: "nginx-service"
+  mongodb:
+    image: mongo:latest
+    container_name: "mongo-service"
 networks:
   db:
 
