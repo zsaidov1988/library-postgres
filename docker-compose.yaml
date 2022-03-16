@@ -9,16 +9,19 @@ services:
       - '/app/node_modules'
     ports:
       - 4010:7000
-    # networks:
-    #   - db
+    networks:
+      - db
     environment:
       - HOST_POSTGRES=postgres
     depends_on:
       - postgres
     deploy:
-      replicas: 6
+      placement: 
+        constraints: 
+          - node.role != manager
+      replicas: 3
       update_config:
-        parallelism: 3
+        parallelism: 2
         delay: 10s
       restart_policy:
         condition: on-failure
@@ -37,8 +40,12 @@ services:
       - 'postgres-data:/var/lib/postgresql/data'
     ports:
       - 5433:5432
-    # networks:
-    #   - db
+    networks:
+      - db
+    deploy:
+      placement: 
+        constraints: 
+          - node.role != manager
   
   # portainer:
   #   image: portainer/portainer:latest
@@ -53,8 +60,8 @@ services:
   #     - /var/run/docker.sock:/var/run/docker.sock:ro
   #     - ./portainer-data:/data
 
-# networks:
-#   db:
+networks:
+  db:
 
 volumes:
   postgres-data:
