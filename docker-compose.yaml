@@ -16,9 +16,9 @@ services:
     depends_on:
       - postgres
     deploy:
-      placement: 
-        constraints: 
-          - node.role != manager
+      # placement: 
+      #   constraints: 
+      #     - node.role != manager
       replicas: 3
       update_config:
         parallelism: 2
@@ -27,8 +27,8 @@ services:
         condition: on-failure
       resources:
         limits:
-          cpus: "0.1"
-          memory: 0.5G
+          cpus: "1"
+          memory: 3G
   
   postgres:
     image: postgres:9.6
