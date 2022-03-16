@@ -3,9 +3,7 @@ version: '3.7'
 services:
 
   web:
-    build:
-      context: .
-      dockerfile: Dockerfile
+    image: web:latest
     restart: always
     volumes:
       - '.:/app'
@@ -42,6 +40,7 @@ services:
       - 9000:9000
     volumes:
       - /etc/localtime:/etc/localtime:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
       - ./portainer-data:/data
 
 networks:
