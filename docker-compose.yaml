@@ -9,8 +9,8 @@ services:
       - '/app/node_modules'
     ports:
       - 4010:7000
-    networks:
-      - db
+    # networks:
+    #   - db
     environment:
       - HOST_POSTGRES=postgres
     depends_on:
@@ -37,8 +37,8 @@ services:
       - 'postgres-data:/var/lib/postgresql/data'
     ports:
       - 5433:5432
-    networks:
-      - db
+    # networks:
+    #   - db
   
   # portainer:
   #   image: portainer/portainer:latest
@@ -53,8 +53,8 @@ services:
   #     - /var/run/docker.sock:/var/run/docker.sock:ro
   #     - ./portainer-data:/data
 
-networks:
-  db:
+# networks:
+#   db:
 
 volumes:
   postgres-data:
