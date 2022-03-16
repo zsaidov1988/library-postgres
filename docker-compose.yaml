@@ -62,7 +62,9 @@ services:
   #     - /etc/localtime:/etc/localtime:ro
   #     - /var/run/docker.sock:/var/run/docker.sock:ro
   #     - ./portainer-data:/data
-
+  whoami:
+    image: "traefik/whoami"
+    container_name: "simple-service"
 networks:
   db:
 
